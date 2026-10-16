@@ -1,24 +1,35 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Navbar } from "@/components/yumyum/Navbar";
+import { Hero, Flavors, Why, Story, Testimonials, Stores, Newsletter, Footer } from "@/components/yumyum/Sections";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "YumYum — La glace qui a le goût du Maroc" },
+      { name: "description", content: "Glaces marocaines artisanales : amlou, fleur d'oranger, safran, dattes de Zagora. Ingrédients 100% naturels, livrés dans 6 villes." },
+      { property: "og:title", content: "YumYum — La glace qui a le goût du Maroc" },
+      { property: "og:description", content: "Glaces marocaines artisanales aux saveurs du terroir." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <Navbar />
+      <main>
+        <Hero />
+        <Flavors />
+        <Why />
+        <Story />
+        <Testimonials />
+        <Stores />
+        <Newsletter />
+      </main>
+      <Footer />
+    </>
   );
 }
