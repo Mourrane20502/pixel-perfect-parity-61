@@ -157,7 +157,7 @@ const reviews = [
 export function Testimonials() {
   const { t } = useI18n();
   const [i, setI] = useState(0);
-  const r = reviews[i];
+  const r = reviews[i]!;
   const go = (d: number) => setI((i + d + reviews.length) % reviews.length);
   return (
     <section className="relative overflow-hidden bg-primary/10 py-24">
@@ -237,7 +237,7 @@ export function Newsletter() {
           </div>
           <form className="flex flex-col gap-3 sm:flex-row" onSubmit={(e) => {
             e.preventDefault();
-            if (!/^\S+@\S+\.\S+$/.test(email)) return toast.error("Adresse email invalide");
+            if (!/^\S+@\S+\.\S+$/.test(email)) { toast.error("Adresse email invalide"); return; }
             toast.success("Merci ! Votre code -10% arrive par email 🍦"); setEmail("");
           }}>
             <label htmlFor="nl" className="sr-only">Email</label>
